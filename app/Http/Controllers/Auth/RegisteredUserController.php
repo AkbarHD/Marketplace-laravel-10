@@ -30,13 +30,30 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Controler register pada breeze
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'avatar' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+            'occupation' => ['required', 'string', 'max:255'],
+            'bank_name' => ['required', 'string', 'max:255'],
+            'bank_account' => ['required', 'string', 'max:255'],
+            'bank_account_number' => ['required', 'numeric', 'min:0'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+        } else {
+            $avatarPath = 'images/avatar-default.png';
+        }
+
         $user = User::create([
+            'occupation' => $request->occupation,
+            'avatar' => $avatarPath,
+            'bank_name' => $request->bank_name,
+            'bank_account_number' => $request->bank_account_number,
+            'bank_account' => $request->bank_account,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
