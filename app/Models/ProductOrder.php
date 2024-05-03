@@ -9,4 +9,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductOrder extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $guarded = ['id'];
+
+    public function Product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function Buyer()
+    {
+        return $this->belongsTo(User::class, 'buyer_id');
+    }
 }

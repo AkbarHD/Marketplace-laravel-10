@@ -30,7 +30,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Controler register pada breeze
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'avatar' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
@@ -41,13 +40,11 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
         if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
         } else {
             $avatarPath = 'images/avatar-default.png';
         }
-
         $user = User::create([
             'occupation' => $request->occupation,
             'avatar' => $avatarPath,
@@ -58,9 +55,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         event(new Registered($user));
-
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

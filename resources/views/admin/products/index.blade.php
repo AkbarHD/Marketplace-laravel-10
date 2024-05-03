@@ -25,14 +25,18 @@
                             <p>Rp. {{ $product->price }}</p>
                         </div>
                         <div class="flex flex-row gap-x-3">
-                            <a href="{{ route('admin.products.create') }}"
+                            <a href="{{ route('admin.products.edit', $product->id) }}"
                                 class="w-fit px-5 py-3 rounded-md bg-indigo-500 text-white">
                                 Edit
                             </a>
-                            <a href="{{ route('admin.products.create') }}"
-                                class="w-fit px-5 py-3 rounded-md bg-red-500 text-white">
-                                Delete
-                            </a>
+                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="w-fit px-5 py-3 rounded-md bg-red-500 text-white">
+                                    Delete
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                 @empty

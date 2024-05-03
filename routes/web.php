@@ -31,7 +31,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('products', ProductController::class);
-        Route::resource('product_orders', ProductOrderController::class);
+        Route::resource('product_orders', ProductOrderController::class); // kalau resoruce ga perlu pake name
+
+
+        Route::get('/transactions', [ProductOrderController::class, 'transactions'])->name('product_orders.transaction');
+        Route::get('/transactions/details/{productOrder}', [ProductOrderController::class, 'transactions_details'])->name('product_orders.transactions.details');
     });
 });
 
