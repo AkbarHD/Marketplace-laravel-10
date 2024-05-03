@@ -18,13 +18,26 @@
                         <img src="{{ Storage::url($order->Product->cover) }}" class="h-[100px] w-auto" alt="">
                         <div>
                             <h3>{{ $order->Product->name }}</h3>
-                            <p>{{ $order->Product->Category->name }}</p> {{-- 2 relasi bergabung --}}
+                        </div>
+                        {{-- <div>
+                            <p>{{ $order->Product->Category->name }}</p>
+                        </div> --}}
+                        <div>
+                            <p>Rp {{ number_format($order->total_price) }}</p>
                         </div>
                         <div>
-                            <p>Rp. {{ $order->price }}</p>
+                            @if ($order->is_paid)
+                                <span class="py-2 px-5 rounded-full bg-green-500 text-white font-bold text-sm">
+                                    PAID
+                                </span>
+                            @else
+                                <span class="py-2 px-5 rounded-full bg-orange-500 text-white font-bold text-sm">
+                                    PENDING
+                                </span>
+                            @endif
                         </div>
                         <div class="flex flex-row gap-x-3">
-                            <a href="{{ route('admin.products.show', $order->id) }}"
+                            <a href="{{ route('admin.product_orders.show', $order->id) }}"
                                 class="w-fit px-5 py-3 rounded-md bg-indigo-500 text-white">
                                 Detail
                             </a>

@@ -59,7 +59,9 @@ class ProductOrderController extends Controller
      */
     public function show(ProductOrder $productOrder)
     {
-        //
+        return view('admin.product_orders.details', [
+            'order' => $productOrder,
+        ]);
     }
 
     /**
@@ -75,7 +77,8 @@ class ProductOrderController extends Controller
      */
     public function update(Request $request, ProductOrder $productOrder)
     {
-        //
+        $productOrder->update(['is_paid' => true]);
+        return redirect()->back()->with('message', 'Order sucess updated');
     }
 
     /**

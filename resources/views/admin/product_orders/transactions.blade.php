@@ -16,17 +16,26 @@
                             alt="">
                         <div>
                             <h3>{{ $transaction->Product->name }}</h3>
-                            <p>{{ $transaction->Product->Category->name }}</p> {{-- 2 relasi bergabung --}}
+                            <p>{{ $transaction->Product->Category->name }}</p> {{-- bisa ambil relasi, pdhl di prodcut transaction tdk ada relasi ke categry dan dia bs ambil lewat table product --}}
                         </div>
                         <div>
-                            <p>Rp. {{ $transaction->price }}</p>
+                            <p>Rp. {{ $transaction->total_price }}</p>
                         </div>
                         <div>
-                            <p>{{ $transaction->is_paid }}</p>
+                            <div>
+                                @if ($transaction->is_paid)
+                                    <span class="py-2 px-5 rounded-full bg-green-500 text-white font-bold text-sm">
+                                        PAID
+                                    </span>
+                                @else
+                                    <span class="py-2 px-5 rounded-full bg-orange-500 text-white font-bold text-sm">
+                                        PENDING
+                                    </span>
+                                @endif
+                            </div>
                         </div>
                         <div class="flex flex-row gap-x-3">
-                            <a href="{{ route('admin.products.show', $transaction->id) }}"
-                                class="w-fit px-5 py-3 rounded-md bg-indigo-500 text-white">
+                            <a href="javascript:;" class="w-fit px-5 py-3 rounded-md bg-indigo-500 text-white">
                                 Detail
                             </a>
 
@@ -34,7 +43,7 @@
                     </div>
                 @empty
                     <p>
-                        Belum ada yang membeli product kamu😉
+                        Belum ada Product yang kamu membeli 😉
                     </p>
                 @endforelse
             </div>
