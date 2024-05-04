@@ -35,7 +35,8 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-x-3">
-                            <a href="javascript:;" class="w-fit px-5 py-3 rounded-md bg-indigo-500 text-white">
+                            <a href="{{ route('admin.product_orders.transactions.details', $transaction) }}"
+                                class="w-fit px-5 py-3 rounded-md bg-indigo-500 text-white">
                                 Detail
                             </a>
 

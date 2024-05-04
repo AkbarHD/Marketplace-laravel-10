@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
 
 
         Route::get('/transactions', [ProductOrderController::class, 'transactions'])->name('product_orders.transaction');
+        // kala mengunakan ProductOrder $productOrder harus sama pada isi paramater
         Route::get('/transactions/details/{productOrder}', [ProductOrderController::class, 'transactions_details'])->name('product_orders.transactions.details');
+        Route::get('/download/file/{productOrder}', [ProductOrderController::class, 'download_file'])->name('product_orders.download')->middleware('throttle:1,1'); // pengguna bisa mendownload dalam 2 menit sekali
     });
 });
 
