@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities{
+    /* bawaan dari laravel jad ke include otomatis */
+/* Used For Chrome, Opera and Safari */
+.no-scrollbar::-webkit-scrollbar {
+display: none;
+}
+/* Used For Firefox: */
+.no-scrollbar {
+scrollbar-width: none;
+}
+/* Used For MS Edge and IE: */
+.no-scrollbar {
+-ms-overflow-style: none;
+}
+
+.pause-animate{
+animation-play-state: paused;
+}
+
+.bg-img-transparent{
+background-image:linear-gradient(transparent,transparent);
+}
+
+.bg-img-purple-to-orange{
+background-image:linear-gradient(to bottom right,#B05CB0,#FCB16B);
+}
+
+.bg-img-black-gradient{
+background-image:linear-gradient(to bottom right,#1E1E1E,#181818);
+}
+
+.bg-img-black{
+background-image:linear-gradient(#121212,#121212);
+}
+
+.autofull-no-bg:-webkit-autofill,
+.autofull-no-bg:-webkit-autofill:hover,
+.autofull-no-bg:-webkit-autofill:focus,
+.autofull-no-bg:-webkit-autofill:active {
+transition: background-color 5000s;
+-webkit-text-fill-color: #fff !important;
+}
+
+}
