@@ -35,7 +35,7 @@
     <section id="Category" class="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8">
         <h2 class="font-semibold text-[32px]">Category</h2>
         <div class="flex justify-between items-center">
-            <a href="category.html"
+            <a href="javascript:;"
                 class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
                 <div
                     class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
@@ -48,20 +48,22 @@
                     </div>
                 </div>
             </a>
-            <a href=""
-                class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
-                <div
-                    class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-                    <div class="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                        <img src="{{ asset('images/icons/laptop.svg') }}" alt="icon">
+            @foreach ($categories as $category)
+                <a href="{{ route('front.category', $category->id) }}"
+                    class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
+                    <div
+                        class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
+                        <div class="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
+                            <img src="{{ asset($category->icon) }}" alt="icon">
+                        </div>
+                        <div class="px-[6px] flex flex-col text-left">
+                            <p class="font-bold text-sm">{{ $category->name }}</p>
+                            <p class="text-xs text-belibang-grey">Designs Made Easy</p>
+                        </div>
                     </div>
-                    <div class="px-[6px] flex flex-col text-left">
-                        <p class="font-bold text-sm">Templates</p>
-                        <p class="text-xs text-belibang-grey">Designs Made Easy</p>
-                    </div>
-                </div>
-            </a>
-            <a href=""
+                </a>
+            @endforeach
+            {{-- <a href=""
                 class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
                 <div
                     class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
@@ -99,7 +101,7 @@
                         <p class="text-xs text-belibang-grey">Typography Selection</p>
                     </div>
                 </div>
-            </a>
+            </a> --}}
         </div>
     </section>
 
@@ -107,14 +109,16 @@
         <h2 class="font-semibold text-[32px]">New Product</h2>
         <div class="grid grid-cols-4 gap-[22px]">
             <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
-                <a href="details.html" class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
+                <a href="{{ route('front.details', 'template-cv-designer-pro') }}"
+                    class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
                     <img src="{{ asset('images/thumbnails/img1.png') }}" class="w-full h-full object-cover" alt="thumbnail">
                     <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10">Rp
                         129,000</p>
                 </a>
                 <div class="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
                     <div class="flex flex-col gap-1">
-                        <a href="details.html" class="font-semibold line-clamp-2 hover:line-clamp-none">SaaS Website
+                        <a href="{{ route('front.details', 'template-cv-designer-pro') }}"
+                            class="font-semibold line-clamp-2 hover:line-clamp-none">SaaS Website
                             Master Template: Streamline Your Digital Solution</a>
                         <p class="bg-[#2A2A2A] font-semibold text-xs text-belibang-grey rounded-[4px] p-[4px_6px] w-fit">
                             Template</p>

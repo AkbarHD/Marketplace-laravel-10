@@ -11,8 +11,10 @@ class FrontController extends Controller
     public function index()
     {
         $products = Product::all();
+        $category = Category::all();
         return view('front.index', [
             'products' => $products,
+            'categories' => $category,
         ]);
     }
 

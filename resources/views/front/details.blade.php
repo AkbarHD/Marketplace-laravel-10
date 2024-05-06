@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="checkout.html"
+                            <a href="{{ route('front.checkout', 'template-cv-designer-pro') }}"
                                 class="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout</a>
                         </div>
                     </div>
