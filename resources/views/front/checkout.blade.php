@@ -1,16 +1,11 @@
-<!doctype html>
-<html>
+@extends('front.layouts.app')
+@section('title', 'Mama Nadya Marketplace')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-</head>
+    {{-- karena di dlm compponent maka manggilnya sprti ini --}}
+    <x-navbar />
 
-<body class="bg-belibang-black font-poppins text-white">
+
     <nav class="w-full bg-[#00000010] backdrop-blur-lg z-10">
         <div class="container max-w-[1130px] mx-auto flex items-center justify-between h-[74px]">
             <div class="flex items-center gap-[26px]">
@@ -105,8 +100,7 @@
                 </ul>
             </div>
             <div class="flex gap-6 items-center">
-                <a href=""
-                    class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">Log
+                <a href="" class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">Log
                     in</a>
                 <a href=""
                     class="p-[8px_16px] w-fit h-fit rounded-[12px] text-belibang-grey border border-belibang-dark-grey hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">Sign
@@ -146,8 +140,7 @@
                     </div>
                 </div>
             </div>
-            <form
-                class="flex flex-col p-[30px] gap-[60px] rounded-[20px] w-[450px] border-2 border-belibang-darker-grey">
+            <form class="flex flex-col p-[30px] gap-[60px] rounded-[20px] w-[450px] border-2 border-belibang-darker-grey">
                 <div class="w-full flex flex-col gap-4">
                     <p class="font-semibold text-xl">Transfer to:</p>
                     <div class="flex flex-col gap-3">
@@ -190,8 +183,7 @@
                                 <div class="flex mt-1 items-center max-w-[322px]">
                                     <input type="tel" name="number" disabled id="number"
                                         class="mt-1 font-semibold bg-transparent appearance-none autofull-no-bg outline-none px-1 placeholder:text-[#595959] placeholder:font-normal placeholder:text-sm w-full"
-                                        placeholder="Type here" value="8938989812" pattern="[0-9 -]"
-                                        required></input>
+                                        placeholder="Type here" value="8938989812" pattern="[0-9 -]" required></input>
                                 </div>
                             </div>
                             <div class="w-6 h-6 flex shrink-0">
@@ -213,8 +205,8 @@
                                 <p>Choose File</p>
                                 <img src="{{ asset('images/icons/document-upload.svg') }}" alt="icon">
                             </button>
-                            <input type="file" name="proof" id="proof" class="hidden"
-                                onchange="previewFile()" required>
+                            <input type="file" name="proof" id="proof" class="hidden" onchange="previewFile()"
+                                required>
                             <div class="relative rounded-lg overflow-hidden bg-[#181818] w-full h-[48px]">
                                 <div class="relative file-preview z-10 w-full h-full hidden">
                                     <img src="{{ asset('images/icons/check.svg') }}"
@@ -237,7 +229,9 @@
             </form>
         </div>
     </section>
+@endsection
 
+@push('after-script')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
@@ -291,6 +285,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+@endpush

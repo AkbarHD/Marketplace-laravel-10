@@ -30,4 +30,10 @@ class FrontController extends Controller
             'category' => $category,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        // dd($category);   
+        return view('front.search');
+    }
 }
