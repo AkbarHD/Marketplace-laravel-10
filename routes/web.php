@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
+Route::get('/details/{product:slug}', [FrontController::class, 'details'])->name('front.details');
+Route::get('/category/{category}', [FrontController::class, 'category'])->name('front.category');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
