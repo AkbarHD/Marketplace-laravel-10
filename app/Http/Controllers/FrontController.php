@@ -20,8 +20,10 @@ class FrontController extends Controller
 
     public function details(Product $product)
     {
+        $other_products = Product::where('id', '!=', $product->id)->get();
         return view('front.details', [
             'product' => $product,
+            'other_products' => $other_products,
         ]);
     }
 

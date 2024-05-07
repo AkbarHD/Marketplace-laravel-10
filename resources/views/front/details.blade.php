@@ -7,10 +7,11 @@
 
 
     <header class="w-full pt-[74px] pb-[103px] relative z-0">
-        <div class="container max-w-[1130px] mx-auto flex flex-col items-center justify-center z-10">
+        <div class="container max-w-[1130px] mx-auto flex flex-col z-10">
             <div class="flex flex-col gap-4 mt-7 z-10">
-                <p class="bg-[#2A2A2A] font-semibold text-belibang-grey rounded-[4px] p-[8px_16px] w-fit">Template</p>
-                <h1 class="font-semibold text-[55px]">Huis Elite: The Complete Smart Home App UI Kit for Modern Living
+                <p class="bg-[#2A2A2A] font-semibold text-belibang-grey rounded-[4px] p-[8px_16px] w-fit">
+                    {{ $product->Category->name }}</p>
+                <h1 class="font-semibold text-[55px]">{{ $product->name }}
                 </h1>
             </div>
         </div>
@@ -24,21 +25,13 @@
     <section id="DetailsContent" class="container max-w-[1130px] mx-auto mb-[32px] relative -top-[70px]">
         <div class="flex flex-col gap-8">
             <div class="w-[1130px] h-[700px] flex shrink-0 rounded-[20px] overflow-hidden">
-                <img src="{{ asset('images/backgrounds/hero.png') }}" class="w-full h-full object-cover" alt="hero image">
+                <img src="{{ Storage::url($product->cover) }}" class="w-full h-full object-cover" alt="hero image">
             </div>
             <div class="flex gap-8 relative -mt-[93px]">
                 <div class="flex flex-col p-[30px] gap-5 bg-[#181818] rounded-[20px] w-[700px] shrink-0 mt-[90px] h-fit">
                     <div class="flex flex-col gap-4">
                         <p class="font-semibold text-xl">Overview</p>
-                        <p class="text-belibang-grey leading-[30px]">Introducing our cutting-edge UI/UX template,
-                            designed for creatives and professionals looking to elevate their digital presence. Crafted
-                            with precision, this template offers a harmonious blend of aesthetics and functionality,
-                            ensuring an intuitive and engaging user experience. Its sleek, modern design is fully
-                            customizable, allowing you to tailor every element to fit your brand's identity perfectly.
-                            blend of aesthetics and functionality, ensuring an intuitive and engaging user experience.
-                            Its sleek, modern design is fullyvery element to fit your brand's identity perfectly. blend
-                            of aesthetics and functionality, ensuring an intuitive and engaging user experience. Its
-                            sleek, modernn</p>
+                        <p class="text-belibang-grey leading-[30px]">{{ $product->about }}</p>
                         <div class="flex items-center gap-[10px] mt-1">
                             <a href=""
                                 class="w-9 h-9 justify-center items-center rounded-full flex shrink-0 overflow-hidden border-[0.69px] border-[#414141]">
@@ -104,7 +97,8 @@
                             <div class="flex flex-col gap-3">
                                 <p
                                     class="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                                    Rp 6,288,000</p>
+                                    Rp. {{ number_format($product->price) }}
+                                </p>
                                 <div class="flex flex-col gap-[10px]">
                                     <div class="flex items-center gap-[10px]">
                                         <div class="w-4 h-4 flex shrink-0">
@@ -148,7 +142,7 @@
                                 class="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout</a>
                         </div>
                     </div>
-                    <div class="w-full p-[30px] bg-[#181818] rounded-[20px] flex flex-col gap-4 h-fit">
+                    {{-- <div class="w-full p-[30px] bg-[#181818] rounded-[20px] flex flex-col gap-4 h-fit">
                         <div class="flex justify-between items-center">
                             <div class="flex gap-3 items-center">
                                 <div class="w-12 h-12 rounded-full overflow-hidden flex shrink-0">
@@ -168,7 +162,7 @@
                         </div>
                         <p class="text-sm leading-[24px] text-belibang-grey">A young UI/UX Designer from Indonesia.
                             Specialized in mobile apps designs & loves creating UI Kit 🇮🇩</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -177,29 +171,37 @@
     <section id="NewProduct" class="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8">
         <h2 class="font-semibold text-[32px]">More Product</h2>
         <div class="grid grid-cols-4 gap-[22px]">
-            <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
-                <a href="" class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
-                    <img src="{{ asset('images/thumbnails/img1.png') }}" class="w-full h-full object-cover"
-                        alt="thumbnail">
-                    <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10">Rp
-                        129,000</p>
-                </a>
-                <div class="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
-                    <div class="flex flex-col gap-1">
-                        <a href="" class="font-semibold line-clamp-2 hover:line-clamp-none">SaaS Website Master
-                            Template: Streamline Your Digital Solution</a>
-                        <p class="bg-[#2A2A2A] font-semibold text-xs text-belibang-grey rounded-[4px] p-[4px_6px] w-fit">
-                            Template</p>
-                    </div>
-                    <div class="flex items-center gap-[6px]">
-                        <div class="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
-                            <img src="{{ asset('images/logos/framer.png') }}" class="w-full h-full object-cover"
-                                alt="logo">
+            @forelse ($other_products as $other_product)
+                <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
+                    <a href="{{ route('front.details', $other_product->slug) }}"
+                        class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
+                        <img src="{{ Storage::url($other_product->cover) }}" class="w-full h-full object-cover"
+                            alt="thumbnail">
+                        <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10">Rp.
+                            {{ number_format($other_product->price) }}0</p>
+                    </a>
+                    <div class="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
+                        <div class="flex flex-col gap-1">
+                            <a href=""
+                                class="font-semibold line-clamp-2 hover:line-clamp-none">{{ $other_product->name }}r</a>
+                            <p
+                                class="bg-[#2A2A2A] font-semibold text-xs text-belibang-grey rounded-[4px] p-[4px_6px] w-fit">
+                                {{ $other_product->Category->name }}</p>
                         </div>
-                        <a href="" class="font-semibold text-xs text-belibang-grey">Framer</a>
+                        <div class="flex items-center gap-[6px]">
+                            <div class="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
+                                <img src="{{ asset('images/logos/framer.png') }}" class="w-full h-full object-cover"
+                                    alt="logo">
+                            </div>
+                            <a href=""
+                                class="font-semibold text-xs text-belibang-grey">{{ $other_product->Creator->name }}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @empty
+                <p>Belum ada product lain</p>
+            @endforelse
+
         </div>
     </section>
     {{-- 
