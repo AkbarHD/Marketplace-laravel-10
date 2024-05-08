@@ -9,7 +9,7 @@
         class="w-full pt-[74px] pb-[34px] bg-[url('{{ asset('images/backgrounds/hero-image.png') }}')] bg-cover bg-no-repeat bg-center relative z-0">
         <div class="container max-w-[1130px] mx-auto flex flex-col items-center justify-center gap-[34px] z-10">
             <div class="flex flex-col gap-2 text-center w-fit mt-20 z-10">
-                <h1 class="font-semibold text-[60px] leading-[130%]">Ebooks</h1>
+                <h1 class="font-semibold text-[60px] leading-[130%]">{{ $category->name }}</h1>
             </div>
             <div class="flex w-full justify-center mb-[34px] z-10">
                 <form
@@ -34,28 +34,40 @@
     <section id="NewProduct" class="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8">
         <h2 class="font-semibold text-[32px]">New Product</h2>
         <div class="grid grid-cols-4 gap-[22px]">
-            <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
-                <a href="details.html" class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
-                    <img src="{{ asset('images/thumbnails/img1.png') }}" class="w-full h-full object-cover" alt="thumbnail">
-                    <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10">Rp
-                        129,000</p>
-                </a>
-                <div class="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
-                    <div class="flex flex-col gap-1">
-                        <a href="details.html" class="font-semibold line-clamp-2 hover:line-clamp-none">SaaS Website
-                            Master Template: Streamline Your Digital Solution</a>
-                        <p class="bg-[#2A2A2A] font-semibold text-xs text-belibang-grey rounded-[4px] p-[4px_6px] w-fit">
-                            Template</p>
-                    </div>
-                    <div class="flex items-center gap-[6px]">
-                        <div class="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
-                            <img src="{{ asset('images/logos/framer.png') }}" class="w-full h-full object-cover"
-                                alt="logo">
+
+            @forelse ($product_categories as $product)
+                <div class="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden">
+                    <a href="{{ route('front.details', $product->slug) }}"
+                        class="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative">
+                        <img src="{{ Storage::url($product->cover) }}" class="w-full h-full object-cover" alt="thumbnail">
+                        <p class="backdrop-blur bg-black/30 rounded-[4px] p-[4px_8px] absolute top-3 right-[14px] z-10">
+                            Rp {{ number_format($product->price) }}
+                        </p>
+                    </a>
+                    <div class="p-[10px_14px_12px] h-full flex flex-col justify-between gap-[14px]">
+                        <div class="flex flex-col gap-1">
+                            <a href="{{ route('front.details', 'template-cv-designer-pro') }}"
+                                class="font-semibold line-clamp-2 hover:line-clamp-none">{{ $product->name }}</a>
+                            <p
+                                class="bg-[#2A2A2A] font-semibold text-xs text-belibang-grey rounded-[4px] p-[4px_6px] w-fit">
+                                {{ $product->Category->name }}</p>
                         </div>
-                        <a href="" class="font-semibold text-xs text-belibang-grey">Framer</a>
+                        <div class="flex items-center gap-[6px]">
+                            <div class="w-6 h-6 flex shrink-0 items-center justify-center rounded-full overflow-hidden">
+                                <img src="{{ Storage::url($product->Creator->avatar) }}" class="w-full h-full object-cover"
+                                    alt="logo">
+                            </div>
+                            <a href=""
+                                class="font-semibold text-xs text-belibang-grey">{{ $product->Creator->name }}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @empty
+                <p>
+                    Belum ada product tersedia
+                </p>
+            @endforelse
+
         </div>
     </section>
 

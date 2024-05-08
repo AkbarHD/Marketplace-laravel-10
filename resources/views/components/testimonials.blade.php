@@ -1,6 +1,8 @@
 <section id="Testimonial" class="mb-[102px] flex flex-col gap-8">
     <div class="container max-w-[1130px] mx-auto flex justify-between items-center">
-        <h2 class="font-semibold text-[32px]">Customers Are Happy <br>With Our Products</h2>
+        <h2 class="font-semibold text-[32px]">Pelanggan Senang
+            <br> Dengan Produk Kami
+        </h2>
         <div class="flex gap-[14px] items-center">
             <button class="btn-prev w-10 h-10 shrink-0 rounded-full overflow-hidden rotate-180">
                 <img src="{{ asset('images/icons/circle-arrow-r.svg') }}" alt="icon">

@@ -2,9 +2,11 @@
     <div class="container max-w-[1130px] mx-auto flex items-center justify-between h-[74px]">
         <div class="flex items-center gap-[26px]">
             <a href="{{ route('front.index') }}" class="flex w-[154px] shrink-0 items-center">
-                <img src="{{ asset('images/logos/logo.svg') }}" alt="logo">
+                {{-- <img src="{{ asset('images/logos/logo.svg') }}" alt="logo"> --}}
+                {{-- <h1 style="font-size: 30px;" class="text-lg font-bold">AkbarStore</h1> --}}
+                <h1 class="font-bold text-3xl ">AkbarStore</h1>
             </a>
-            <ul class="flex gap-6 items-center">
+            <ul class="flex gap-6 items-center pl-6">
                 <li class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">
                     <a href="{{ route('front.index') }}">Home</a>
                 </li>

@@ -138,20 +138,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('front.checkout', 'template-cv-designer-pro') }}"
+                            <a href="{{ route('front.checkout', $product->slug) }}"
                                 class="bg-[#2D68F8] text-center font-semibold p-[12px_20px] rounded-full hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout</a>
                         </div>
                     </div>
-                    {{-- <div class="w-full p-[30px] bg-[#181818] rounded-[20px] flex flex-col gap-4 h-fit">
+                    <div class="w-full p-[30px] bg-[#181818] rounded-[20px] flex flex-col gap-4 h-fit">
                         <div class="flex justify-between items-center">
                             <div class="flex gap-3 items-center">
                                 <div class="w-12 h-12 rounded-full overflow-hidden flex shrink-0">
-                                    <img src="{{ asset('images/logos/logo_buildwithangga.png') }}" alt="icon">
+                                    <img src="{{ Storage::url($product->Creator->avatar) }}" alt="icon">
                                 </div>
                                 <div class="flex flex-col gap-[2px]">
-                                    <p class="font-semibold">BuildWithAngga</p>
+                                    <p class="font-semibold">{{ $product->Creator->name }}</p>
                                     <p class="text-[#595959] text-sm leading-[18px]">
-                                        <span class="font-semibold mr-1">183,409</span>
+                                        <span class="font-semibold mr-1">{{ count($creator_products) }}</span>
                                         Product
                                     </p>
                                 </div>
@@ -162,7 +162,7 @@
                         </div>
                         <p class="text-sm leading-[24px] text-belibang-grey">A young UI/UX Designer from Indonesia.
                             Specialized in mobile apps designs & loves creating UI Kit 🇮🇩</p>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

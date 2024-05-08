@@ -120,22 +120,23 @@
                     </div>
                     <div class="product-title flex flex-col gap-[30px]">
                         <div class="flex flex-col gap-3">
-                            <p class="font-semibold">Huis Elite: The Complete Smart Home App UI Kit for Modern Living
+                            <p class="font-semibold">{{ $product->name }}
                             </p>
                             <p
                                 class="bg-[#2A2A2A] font-semibold text-xs text-belibang-grey rounded-[4px] p-[4px_6px] w-fit">
-                                Template</p>
+                                {{ $product->Category->name }}</p>
                         </div>
                         <div class="flex justify-between items-center">
                             <div class="flex items-center gap-2">
                                 <div class="w-8 h-8 rounded-full flex shrink-0 overflow-hidden">
-                                    <img src="{{ asset('images/logos/logo_buildwithangga.png') }}" alt="logo">
+                                    <img src="{{ Storage::url($product->Creator->avatar) }}" alt="logo">
                                 </div>
-                                <p class="font-semibold text-belibang-grey">BWA</p>
+                                <p class="font-semibold text-belibang-grey">
+                                    {{ Str::limit(strip_tags($product->Creator->name), 12, '...') }}</p>
                             </div>
                             <p
                                 class="font-semibold text-4xl bg-clip-text text-transparent bg-gradient-to-r from-[#B05CB0] to-[#FCB16B]">
-                                Rp 6,288,000</p>
+                                Rp. {{ number_format($product->price) }}</p>
                         </div>
                     </div>
                 </div>
@@ -153,7 +154,7 @@
                                         class="mt-1 font-semibold bg-transparent appearance-none outline-none px-1 invalid:text-[#595959] invalid:font-normal invalid:text-sm"
                                         required>
                                         <option class="text-belibang-black" value="Angga Bank" selected>
-                                            Angga Bank</option>
+                                            {{ $product->Creator->bank_name }}</option>
                                     </select>
                                 </div>
                                 <div class="w-6 h-6 flex shrink-0">
@@ -165,8 +166,8 @@
                                 <div class="flex flex-col w-full">
                                     <label for="name" class="text-xs text-belibang-grey pl-1">Account Name</label>
                                     <div class="flex mt-1 items-center max-w-[149px]">
-                                        <input disabled type="text" name="name" value="Angga Capital"
-                                            id="name"
+                                        <input disabled type="text" name="name"
+                                            value="{{ $product->Creator->bank_account }}" id="name"
                                             class="font-semibold bg-transparent appearance-none autofull-no-bg outline-none px-1 placeholder:text-[#595959] placeholder:font-normal placeholder:text-sm w-full"
                                             placeholder="Type here" required></input>
                                     </div>
@@ -183,7 +184,8 @@
                                 <div class="flex mt-1 items-center max-w-[322px]">
                                     <input type="tel" name="number" disabled id="number"
                                         class="mt-1 font-semibold bg-transparent appearance-none autofull-no-bg outline-none px-1 placeholder:text-[#595959] placeholder:font-normal placeholder:text-sm w-full"
-                                        placeholder="Type here" value="8938989812" pattern="[0-9 -]" required></input>
+                                        placeholder="Type here" value="{{ $product->Creator->bank_account_number }}"
+                                        pattern="[0-9 -]" required></input>
                                 </div>
                             </div>
                             <div class="w-6 h-6 flex shrink-0">
@@ -207,11 +209,12 @@
                             </button>
                             <input type="file" name="proof" id="proof" class="hidden" onchange="previewFile()"
                                 required>
+
                             <div class="relative rounded-lg overflow-hidden bg-[#181818] w-full h-[48px]">
                                 <div class="relative file-preview z-10 w-full h-full hidden">
-                                    <img src="{{ asset('images/icons/check.svg') }}"
+                                    {{-- <img src="{{ asset('images/icons/check.svg') }}"
                                         class="check-icon absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                        alt="icon">
+                                        alt="icon"> --}}
                                     <img src="" class="thumbnail-proof w-full h-full object-cover"
                                         alt="thumbnail">
                                 </div>
@@ -219,6 +222,7 @@
                                     class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                     alt="icon">
                             </div>
+
                         </div>
                     </div>
                     <a href="success-checkout.html"

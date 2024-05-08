@@ -13,16 +13,16 @@
                 <p class="text-lg text-belibang-grey">Change the way you work to achieve better results.</p>
             </div>
             <div class="flex w-full justify-center mb-[34px] z-10">
-                <form
+                <form action="{{ route('front.search') }}" method="GET"
                     class="group/search-bar p-[14px_18px] bg-belibang-darker-grey ring-1 ring-[#414141] hover:ring-[#888888] max-w-[560px] w-full rounded-full transition-all duration-300">
                     <div class="relative text-left">
                         <button class="absolute inset-y-0 left-0 flex items-center">
                             <img src="{{ asset('images/icons/search-normal.svg') }}" alt="icon">
                         </button>
-                        <input type="text" id="searchInput"
+                        <input name="keyword" type="text" id="searchInput"
                             class="bg-belibang-darker-grey w-full pl-[36px] focus:outline-none placeholder:text-[#595959] pr-9"
                             placeholder="Type anything to search..." />
-                        <input type="reset" id="resetButton"
+                        <input name="keyword" type="reset" id="resetButton"
                             class="close-button hidden w-[38px] h-[38px] flex shrink-0 bg-[url('{{ asset('images/icons/close.svg') }}')] hover:bg-[url('{{ asset('images/icons/close-white.svg') }}')] transition-all duration-300 appearance-none transform -translate-x-1/2 -translate-y-1/2 absolute top-1/2 -right-5"
                             value="">
                     </div>
@@ -63,45 +63,6 @@
                     </div>
                 </a>
             @endforeach
-            {{-- <a href=""
-                class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
-                <div
-                    class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-                    <div class="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                        <img src="{{ asset('images/icons/book.svg') }}" alt="icon">
-                    </div>
-                    <div class="px-[6px] flex flex-col text-left">
-                        <p class="font-bold text-sm">Ebooks</p>
-                        <p class="text-xs text-belibang-grey">Read and Learn</p>
-                    </div>
-                </div>
-            </a>
-            <a href=""
-                class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
-                <div
-                    class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-                    <div class="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                        <img src="{{ asset('images/icons/hat.svg') }}" alt="icon">
-                    </div>
-                    <div class="px-[6px] flex flex-col text-left">
-                        <p class="font-bold text-sm">Courses</p>
-                        <p class="text-xs text-belibang-grey">Expand Your Skills</p>
-                    </div>
-                </div>
-            </a>
-            <a href=""
-                class="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300">
-                <div
-                    class="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-                    <div class="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                        <img src="{{ asset('images/icons/pen.svg') }}" alt="icon">
-                    </div>
-                    <div class="px-[6px] flex flex-col text-left">
-                        <p class="font-bold text-sm">Fonts</p>
-                        <p class="text-xs text-belibang-grey">Typography Selection</p>
-                    </div>
-                </div>
-            </a> --}}
         </div>
     </section>
 
