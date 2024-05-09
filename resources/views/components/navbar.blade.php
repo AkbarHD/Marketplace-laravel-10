@@ -36,7 +36,7 @@
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
                                 <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{ asset('images/icons/laptop.svg') }}" alt="icon">
+                                    <img src="{{ asset('images/ic_template.svg') }}" alt="icon">
                                 </a>
                                 <a href="" class="flex flex-col">
                                     <p class="font-bold text-sm text-white">Templates</p>
@@ -48,10 +48,10 @@
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
                                 <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{ asset('images/icons/hat.svg') }}" alt="icon">
+                                    <img src="{{ asset('images/ic_course.svg') }}" alt="icon">
                                 </a>
                                 <a href="" class="flex flex-col">
-                                    <p class="font-bold text-sm text-white">Courses</p>
+                                    <p class="font-bold text-sm text-white">Artikel</p>
                                     <p class="text-xs text-belibang-grey">Expand Your Skills</p>
                                 </a>
                             </div>
@@ -60,7 +60,7 @@
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
                                 <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{ asset('images/icons/book.svg') }}" alt="icon">
+                                    <img src="{{ asset('images/ic_font.svg') }}" alt="icon">
                                 </a>
                                 <a href="" class="flex flex-col">
                                     <p class="font-bold text-sm text-white">Ebooks</p>
@@ -72,10 +72,10 @@
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
                                 <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{ asset('images/icons/pen.svg') }}" alt="icon">
+                                    <img src="{{ asset('images/ic_ebook.svg') }}" alt="icon">
                                 </a>
                                 <a href="" class="flex flex-col">
-                                    <p class="font-bold text-sm text-white">Fonts</p>
+                                    <p class="font-bold text-sm text-white">Source Code</p>
                                     <p class="text-xs text-belibang-grey">Typography Selection</p>
                                 </a>
                             </div>

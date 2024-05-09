@@ -3,7 +3,6 @@
 @section('content')
 
     {{-- karena di dlm compponent maka manggilnya sprti ini --}}
-    <x-navbar />
 
 
     <nav class="w-full bg-[#00000010] backdrop-blur-lg z-10">
@@ -14,7 +13,7 @@
                 </a>
                 <ul class="flex gap-6 items-center">
                     <li class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">
-                        <a href="index.html">Home</a>
+                        <a href="{{ route('front.index') }}">Home</a>
                     </li>
                     <li class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300 relative">
                         <button id="menu-button" class="flex items-center gap-1 focus:text-belibang-light-grey">
@@ -100,14 +99,34 @@
                 </ul>
             </div>
             <div class="flex gap-6 items-center">
-                <a href="" class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">Log
-                    in</a>
-                <a href=""
-                    class="p-[8px_16px] w-fit h-fit rounded-[12px] text-belibang-grey border border-belibang-dark-grey hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">Sign
-                    up</a>
+                @guest
+                    <a href="{{ route('login') }}"
+                        class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">Log
+                        in</a>
+                    <a href="{{ route('register') }}"
+                        class="p-[8px_16px] w-fit h-fit rounded-[12px] text-belibang-grey border border-belibang-dark-grey hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">Sign
+                        up</a>
+                @endguest
+
+                @auth
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="p-[8px_16px] w-fit h-fit rounded-[12px] text-belibang-grey border border-belibang-dark-grey hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">My
+                        Dashboard</a>
+                @endauth
             </div>
         </div>
     </nav>
+
+    @if ($errors->any())
+        <div class="bg-red-500 py-5 text-white font-bold max-w-xl mx-auto text-center rounded-full">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 
     <section id="checkout" class="container max-w-[1130px] mx-auto mt-[30px]">
         <div class="w-full flex justify-center gap-[118px]">
@@ -115,8 +134,7 @@
                 <h1 class="font-semibold text-[32px] ">Checkout Product</h1>
                 <div class="product-detail flex flex-col gap-3">
                     <div class="thumbnail w-[412px] h-[255px] flex shrink-0 rounded-[20px] overflow-hidden">
-                        <img src="{{ asset('images/thumbnails/checkout.png') }}" class="w-full h-full object-cover"
-                            alt="thumbnail">
+                        <img src="{{ Storage::url($product->cover) }}" class="w-full h-full object-cover" alt="thumbnail">
                     </div>
                     <div class="product-title flex flex-col gap-[30px]">
                         <div class="flex flex-col gap-3">
@@ -141,7 +159,12 @@
                     </div>
                 </div>
             </div>
-            <form class="flex flex-col p-[30px] gap-[60px] rounded-[20px] w-[450px] border-2 border-belibang-darker-grey">
+
+
+            <form action="{{ route('front.checkout.store', $product->slug) }}" method="POST"
+                enctype="multipart/form-data"
+                class="flex flex-col p-[30px] gap-[60px] rounded-[20px] w-[450px] border-2 border-belibang-darker-grey">
+                @csrf
                 <div class="w-full flex flex-col gap-4">
                     <p class="font-semibold text-xl">Transfer to:</p>
                     <div class="flex flex-col gap-3">
@@ -153,7 +176,7 @@
                                     <select name="bank" id="bank"
                                         class="mt-1 font-semibold bg-transparent appearance-none outline-none px-1 invalid:text-[#595959] invalid:font-normal invalid:text-sm"
                                         required>
-                                        <option class="text-belibang-black" value="Angga Bank" selected>
+                                        <option class="text-belibang-black" selected>
                                             {{ $product->Creator->bank_name }}</option>
                                     </select>
                                 </div>
@@ -225,9 +248,9 @@
 
                         </div>
                     </div>
-                    <a href="success-checkout.html"
+                    <button type="submit"
                         class="rounded-full text-center bg-[#2D68F8] p-[8px_18px] font-semibold hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout
-                        Now</a>
+                        Now</button>
                 </div>
 
             </form>

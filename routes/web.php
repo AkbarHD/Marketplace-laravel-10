@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/checkout/{product:slug}', [CheckoutController::class, 'checkout'])->name('front.checkout');
+    Route::post('/checkout/store/{product:slug}', [CheckoutController::class, 'store'])->name('front.checkout.store');
 
 
     Route::prefix('admin')->name('admin.')->group(function () {

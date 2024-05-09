@@ -22,11 +22,12 @@ class FrontController extends Controller
     {
         $other_products = Product::where('id', '!=', $product->id)->get(); // menampilan product di detail selain dari product yg lg di show
         $creator_id = $product->creator_id;
-        $creator_products = Product::where('creator_id', $creator_id)->get();
+        $creator_products = Product::where('slug', $product->slug)->get();
         return view('front.details', [
             'product' => $product,
             'other_products' => $other_products,
-            'creator_products' => $creator_products,
+            'creator_products' => $creator_products, // details
+            'total_products' => Product::where('creator_id', $creator_id)->get(), // jumlah product
         ]);
     }
 

@@ -16,11 +16,16 @@
                 <div class="item-product flex flex-col gap-y-6 ">
                     <img src="{{ Storage::url($order->Product->cover) }}" class="h-[auto] w-[300px]" alt="">
                     <div>
-                        <h3>{{ $order->Product->name }}</h3>
-                    </div>
-                    <div>
+                        <h3 class="text-indigo-950 text-lg font-bold">{{ $order->Product->name }}</h3>
                         <p>{{ $order->Product->Category->name }}</p> {{-- 2 relasi bergabung --}}
+
                     </div>
+                    <hr>
+
+                    <div class="text-sm text-slate-500">
+                        <p>Buyer : {{ $order->Buyer->name }}</p> {{-- 2 relasi bergabung --}}
+                    </div>
+                    <hr>
 
                     <div class="flex gap-3 flex-row items-center">
                         <p>Rp. {{ $order->total_price }}</p>
@@ -37,8 +42,7 @@
                         </div>
 
                         <div>
-                            <img src="{{ Storage::url($order->Product->cover) }}" class="h-[auto] w-[300px]"
-                                alt="">
+                            <img src="{{ Storage::url($order->proof) }}" class="h-[auto] w-[300px]" alt="">
                         </div>
                     </div>
                     <div class="flex flex-row gap-x-3">
