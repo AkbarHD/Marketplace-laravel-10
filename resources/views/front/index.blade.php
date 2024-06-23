@@ -105,7 +105,7 @@
 
     <x-testimonials />
 
-    <x-tools />
+    {{-- <x-tools /> --}}
 
     <x-footer />
 
